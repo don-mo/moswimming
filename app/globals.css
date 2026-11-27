@@ -1,0 +1,354 @@
+@import "tailwindcss";
+
+/* ─── MoSwimming Design System ─────────────────────────────────────────────
+   Backgrounds are the three deep pool-water tones specified in the brief.
+   Accent is purple (#8b3dff). CTA coral is derived from the nav sketch.
+   All values in OKLCH per project spec. APCA used for text contrast,
+   not WCAG 2 / DPS.
+   ─────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* ── Backgrounds ── */
+  --color-bg-1:       oklch(0.30 0.07 214);   /* #125669 – main deep teal   */
+  --color-bg-2:       oklch(0.35 0.09 143);   /* #126925 – deep green       */
+  --color-bg-3:       oklch(0.33 0.07 178);   /* #126950 – deep teal-green  */
+
+  /* ── Surfaces (cards / elevated panels on bg-1) ── */
+  --color-surface-1:  oklch(0.36 0.05 210);
+  --color-surface-2:  oklch(0.42 0.04 205);
+
+  /* ── Text (APCA-checked on bg-1) ── */
+  --color-text-primary:   oklch(0.95 0.01 210);   /* ~Lc 90 on bg-1  */
+  --color-text-secondary: oklch(0.78 0.03 210);   /* ~Lc 68           */
+  --color-text-muted:     oklch(0.58 0.03 210);   /* ~Lc 38           */
+
+  /* ── Accent – purple ── */
+  --color-accent:         oklch(0.58 0.26 293);   /* #8b3dff           */
+  --color-accent-light:   oklch(0.70 0.18 293);
+  --color-accent-dim:     oklch(0.42 0.20 293);   /* hover inset       */
+
+  /* ── Brand teal (logo wordmark colour) ── */
+  --color-brand-teal:     oklch(0.72 0.13 185);
+
+  /* ── CTA – coral (from nav sketch) ── */
+  --color-cta:            oklch(0.64 0.19 32);
+  --color-cta-hover:      oklch(0.70 0.17 32);
+
+  /* ── Semantic ── */
+  --color-success:        oklch(0.72 0.18 155);
+  --color-border:         oklch(0.40 0.04 210);
+  --color-border-strong:  oklch(0.52 0.06 210);
+
+  /* ── Typography ── */
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body:    var(--font-inter), system-ui, sans-serif;
+  --font-brand:   var(--font-caveat), cursive;
+
+  /* ── Spacing ── */
+  --spacing-section: 6rem;
+
+  /* ── Radii ── */
+  --radius-pill: 9999px;
+  --radius-card: 1rem;
+}
+
+/* ─── Base ──────────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background-color: oklch(0.30 0.07 214);
+  color: oklch(0.95 0.01 210);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  min-height: 100dvh;
+}
+
+/* ─── Typography scale ───────────────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+/* ─── Utilities ──────────────────────────────────────────────────────────── */
+.section-pad {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+@media (min-width: 768px) {
+  .section-pad {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+.container {
+  width: 100%;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media (min-width: 768px) {
+  .container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
+}
+
+/* ─── Buttons ────────────────────────────────────────────────────────────── */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem;
+  border-radius: var(--radius-pill);
+  background-color: oklch(0.64 0.19 32);
+  color: oklch(0.98 0.01 30);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.btn-cta:hover {
+  background-color: oklch(0.70 0.17 32);
+  transform: translateY(-1px);
+}
+.btn-cta:active {
+  transform: translateY(0);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.7rem 1.6rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid oklch(0.52 0.06 210);
+  color: oklch(0.95 0.01 210);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  cursor: pointer;
+  background: transparent;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+.btn-ghost:hover {
+  border-color: oklch(0.72 0.13 185);
+  background-color: oklch(0.36 0.05 210);
+}
+
+/* ─── Cards ──────────────────────────────────────────────────────────────── */
+.card {
+  background-color: oklch(0.36 0.05 210);
+  border: 1px solid oklch(0.40 0.04 210);
+  border-radius: var(--radius-card);
+  padding: 1.75rem;
+  transition: border-color 0.2s ease;
+}
+.card:hover {
+  border-color: oklch(0.52 0.06 210);
+}
+
+/* ─── Image placeholder ───────────────────────────────────────────────────── */
+.img-placeholder {
+  background-color: oklch(0.36 0.05 210);
+  border: 2px dashed oklch(0.52 0.06 210);
+  border-radius: var(--radius-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: oklch(0.65 0.05 210);
+  font-size: 0.85rem;
+  font-style: italic;
+  padding: 2rem;
+}
+
+/* ─── Form elements ──────────────────────────────────────────────────────── */
+.form-input {
+  width: 100%;
+  background-color: oklch(0.36 0.05 210);
+  border: 1.5px solid oklch(0.45 0.05 210);
+  border-radius: 0.6rem;
+  padding: 0.75rem 1rem;
+  color: oklch(0.95 0.01 210);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-input:focus {
+  border-color: oklch(0.58 0.26 293);
+  box-shadow: 0 0 0 3px oklch(0.58 0.26 293 / 0.2);
+}
+.form-input::placeholder {
+  color: oklch(0.55 0.03 210);
+}
+
+.form-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: oklch(0.78 0.03 210);
+  margin-bottom: 0.4rem;
+}
+
+.form-select {
+  width: 100%;
+  background-color: oklch(0.36 0.05 210);
+  border: 1.5px solid oklch(0.45 0.05 210);
+  border-radius: 0.6rem;
+  padding: 0.75rem 1rem;
+  color: oklch(0.95 0.01 210);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2378909c' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  transition: border-color 0.2s ease;
+}
+.form-select:focus {
+  border-color: oklch(0.58 0.26 293);
+  box-shadow: 0 0 0 3px oklch(0.58 0.26 293 / 0.2);
+}
+
+/* ─── Success animation ───────────────────────────────────────────────────── */
+@keyframes checkDraw {
+  from { stroke-dashoffset: 50; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes circleDraw {
+  from { stroke-dashoffset: 160; }
+  to   { stroke-dashoffset: 0; }
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.success-circle {
+  stroke-dasharray: 160;
+  animation: circleDraw 0.5s ease forwards;
+}
+.success-check {
+  stroke-dasharray: 50;
+  animation: checkDraw 0.4s ease 0.4s forwards;
+  stroke-dashoffset: 50;
+}
+.success-message {
+  animation: fadeUp 0.4s ease 0.7s both;
+}
+
+/* ─── Nav link hover ──────────────────────────────────────────────────────── */
+.nav-link {
+  color: oklch(0.85 0.02 210);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.25rem 0;
+  position: relative;
+  transition: color 0.2s ease;
+}
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1.5px;
+  background: oklch(0.72 0.13 185);
+  transition: width 0.2s ease;
+}
+.nav-link:hover {
+  color: oklch(0.95 0.01 210);
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ─── Language dropdown ───────────────────────────────────────────────────── */
+.lang-dropdown {
+  position: relative;
+}
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid oklch(0.45 0.05 210);
+  background: oklch(0.36 0.05 210);
+  color: oklch(0.85 0.02 210);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+.lang-btn:hover {
+  border-color: oklch(0.72 0.13 185);
+}
+.lang-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 10rem;
+  background: oklch(0.36 0.05 210);
+  border: 1px solid oklch(0.45 0.05 210);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 8px 32px oklch(0.10 0.05 210 / 0.6);
+  z-index: 50;
+}
+.lang-option {
+  width: 100%;
+  padding: 0.65rem 1rem;
+  text-align: left;
+  background: none;
+  border: none;
+  color: oklch(0.85 0.02 210);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.lang-option:hover,
+.lang-option[aria-selected="true"] {
+  background: oklch(0.42 0.04 205);
+  color: oklch(0.95 0.01 210);
+}
+
+/* ─── Blog ────────────────────────────────────────────────────────────────── */
+.prose {
+  color: oklch(0.85 0.02 210);
+  max-width: 68ch;
+}
+.prose h2 { font-size: 1.6rem; margin-top: 2rem; margin-bottom: 0.75rem; color: oklch(0.95 0.01 210); }
+.prose h3 { font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.5rem; color: oklch(0.95 0.01 210); }
+.prose p  { margin-bottom: 1.25rem; line-height: 1.75; }
+.prose ul { list-style: disc; padding-left: 1.5rem; margin-bottom: 1.25rem; }
+.prose li { margin-bottom: 0.4rem; }
+
+/* ─── Divider ─────────────────────────────────────────────────────────────── */
+.divider {
+  border: none;
+  border-top: 1px solid oklch(0.40 0.04 210);
+  margin: 0;
+}

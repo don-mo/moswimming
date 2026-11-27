@@ -1,0 +1,12 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/wtp-followup",
+      "schedule": "0 * * * *"
+    },
+    {
+      "path": "/api/cron/weekly-recap",
+      "schedule": "0 22 * * 5"
+    }
+  ]
+}
